@@ -1,0 +1,6 @@
+openai
+langchain
+streamlit
+radon
+requests
+altair==4.0.0
