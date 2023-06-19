@@ -15,7 +15,7 @@ most_complex_repository, complexity_report = find_most_complex_repository(github
 if github_url:
     if most_complex_repository :
         st.write(f" # The most technically complex repository from user '{github_url}' is '{most_complex_repository}'.")
-        st.write('Below is a Complexity Report:', complexity_report)
+        st.write('Below is a Complexity Report:', pd.DataFrame(complexity_report))
 
     else:
         st.write("Some Error Occured")
