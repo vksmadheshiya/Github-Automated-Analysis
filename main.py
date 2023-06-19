@@ -9,7 +9,7 @@ github_url=st.text_input("Please Enter The GitHub User's URL For Analysis")
 
 
 # Example github_url = 'https://github.com/vksmadheshiya'
-most_complex_repository, complexity_report = find_most_complex_repository(github_url)
+most_complex_repository = find_most_complex_repository(github_url)
 
 
 if github_url:
