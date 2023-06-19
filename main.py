@@ -15,7 +15,5 @@ most_complex_repository = find_most_complex_repository(github_url)
 if github_url:
     if most_complex_repository :
         st.write(f" # The most technically complex repository from user '{github_url}' is '{most_complex_repository}'.")
-        st.write('Below is a Complexity Report:', complexity_report)
-
     else:
         st.write("Some Error Occured")
