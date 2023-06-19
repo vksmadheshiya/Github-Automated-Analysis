@@ -35,9 +35,6 @@ def fetch_code_and_return_total_score(github_url, repository_name):
         contents = response.json()
         
         for item in contents:
-            print("**"*100)
-            print(item)
-            print("**"*100)
             if item['type'] == 'file':
                 file_path = item['path']
                 file_response = requests.get(f'https://raw.githubusercontent.com/{username}/{repository_name}/master/{file_path}')
@@ -83,6 +80,10 @@ def calculate_complexity(code, filepath=None):
 
 def find_most_complex_repository(github_url):
     repositories = fetch_repositories(github_url)
+    complexity_report = {
+        "repo":[],
+        "complexity_score":[]
+    }
 
     if not repositories:
         print("No repositories found.")
@@ -92,11 +93,15 @@ def find_most_complex_repository(github_url):
     max_complexity = -1
 
     for repo in repositories:
+
         complexity = fetch_code_and_return_total_score(github_url, repo)
         print(f"\n Complexity for repository '{repo}' is : {complexity} \n")
-
+        complexity_report['repo'].append(repo)
+        complexity_report['complexity_score'].append(complexity)
         if complexity > max_complexity:
             most_complex_repo = repo
             max_complexity = complexity
+        
+        print(complexity_report)
 
-    return most_complex_repo
+    return most_complex_repo, complexity_report
