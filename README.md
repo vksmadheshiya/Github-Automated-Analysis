@@ -1,4 +1,4 @@
-# Github-Automated-Analysis | angchain-OpenAI Submission Project
+# Github-Automated-Analysis | Langchain-OpenAI Submission Project
 
 ## Github Automated Analysis | To Find Out Most Technically Complex And Challenging Repo
 
