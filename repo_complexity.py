@@ -4,6 +4,7 @@ import radon.metrics
 import re
 from langchain_gpt import calculate_complexity_by_chatgpt
 
+complexity_tag = "Simple"
 def fetch_repositories(github_url):
     # Extracting the username from the GitHub URL
     username = github_url.split('/')[-1]
@@ -80,6 +81,23 @@ def calculate_complexity(code, filepath=None):
         print(f"Failed to calculate complexity for file '{filepath}'.")
         return 0
 
+def calculate_complexity_by_range(code, complexity_tag, filepath=None):
+    """ Function To Check complexity and also returns complexity Tags  Func Not yet Used"""
+    try:
+        complexity = radon.metrics.mi_visit(code, False)
+        if complexity > 1 :
+            complexity_tag = "Simple"
+        elif complexity > 10 :
+            complexity_tag = "Medium"
+        elif complexity > 20 :
+            complexity_tag = "Complex"
+        elif complexity > 50 :
+            complexity_tag = "Very Complex"
+        return complexity
+    except Exception as e:
+        print(e)
+        print(f"Failed to calculate complexity for file '{filepath}'.")
+        return 0
 
 def find_most_complex_repository(github_url):
     repositories = fetch_repositories(github_url)
